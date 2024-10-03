@@ -15,15 +15,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: CheckOut test
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
       
       - name: Set up compiler
-      - run: |
+        run: |
           sudo apt-get update,
           sudo apt-get install g++.
           
       - name: cmake-configure
-      - uses: snickerbockers/cmake-configure@prerel1
+        uses: snickerbockers/cmake-configure@prerel1
 
       - name: Build sources and tests
         run: |
