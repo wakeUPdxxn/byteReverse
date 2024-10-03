@@ -1,5 +1,10 @@
 # Prerequisites
 *.d
+#vs
+out
+build
+.json
+.vs
 
 # Compiled Object files
 *.slo
