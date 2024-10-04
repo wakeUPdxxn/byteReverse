@@ -24,7 +24,7 @@ jobs:
 
       - name: Build sources and tests
         run: |
-           if ( "$matrix.os"  == 'ubuntu-latest' ); then
+           if ( {"$matrix.os"}  == 'ubuntu-latest' ); then
              cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
              cmake --build build/release
            else
