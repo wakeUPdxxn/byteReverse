@@ -3,11 +3,11 @@
 #include <cstddef>
 
 
-TEST(SimpleTest, foo) {
+TEST(SimpleTest, byteReverse) {
 	std::byte x{ 97 };
 	std::byte y{ 67 };
 	EXPECT_EQ(
 		y,
-		foo(x)
+		byteReverse(x)
 	);
 }
