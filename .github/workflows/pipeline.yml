@@ -24,8 +24,14 @@ jobs:
 
       - name: Build sources and tests
         run: |
-           cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
-           cmake --build build/release
+           if [ ${{ matrix.os }} == 'ubuntu-latest' ]; then
+             cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
+             cmake --build build/release
+           else
+             cmake -S . -B build/release -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release
+             cmake --build build/release
+           fi
+          
 
   test:
     needs: all-build
@@ -37,10 +43,16 @@ jobs:
     steps:
     - name: Run tests
       run: |
-        cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
-        cmake --build build/release
-        chmod +x run-tests.sh
-        ./run-tests.sh
+        if [ ${{ matrix.os }} == 'ubuntu-latest' ]; then
+          cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
+          cmake --build build/release
+          chmod +x run-tests.sh
+          ./run-tests.sh
+        else
+           cmake -S . -B build/release -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release
+           cmake --build build/release
+           ./run-tests.sh
+        fi
 
 
     
