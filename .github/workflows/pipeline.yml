@@ -26,6 +26,7 @@ jobs:
       - name: Run tests
         run: |
             pwd
+            ls
             ./run-tests.sh
            
   ubuntu-build-test:
@@ -45,6 +46,7 @@ jobs:
       - name: Run tests
         run: |
           pwd
+          ls
           chmod +x run-tests.sh
           ./run-tests.sh
           
