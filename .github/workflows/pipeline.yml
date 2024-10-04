@@ -9,12 +9,8 @@ on:
 
 
 jobs:
-  all-build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-      
-    runs-on: ${{ matrix.os }}
+  win-build:      
+    runs-on: windows-latest
     steps:
       - name: CheckOut test
         uses: actions/checkout@v4  
@@ -24,35 +20,46 @@ jobs:
 
       - name: Build sources and tests
         run: |
-           if ( ${{ matrix.os }}  == 'ubuntu-latest' ); then
-             cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
-             cmake --build build/release
-           else
              cmake -S . -B build/release -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release
              cmake --build build/release
-           fi
+           
+  ubuntu-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CheckOut test
+        uses: actions/checkout@v4  
           
+      - name: cmake-configure
+        uses: snickerbockers/cmake-configure@prerel1
 
-  test:
-    needs: all-build
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+      - name: Build sources and tests
+        run: |
+           cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
+           cmake --build build/release
+           
+
+  test-win:
+    needs: win-build
       
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     steps:
     - name: Run tests
       run: |
-        if [ ${{ matrix.os }} == 'ubuntu-latest' ]; then
-          cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
-          cmake --build build/release
-          chmod +x run-tests.sh
-          ./run-tests.sh
-        else
-           cmake -S . -B build/release -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release
+         cmake -S . -B build/release -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release
+         cmake --build build/release
+         ./run-tests.sh
+      
+  test-lin:
+     needs: ubuntu-build
+      
+     runs-on: ubuntu-latest
+     steps:
+       - name: Run tests
+         run: |
+           cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
            cmake --build build/release
+           chmod +x run-tests.sh
            ./run-tests.sh
-        fi
 
 
     
