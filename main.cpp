@@ -1,6 +1,7 @@
-#include <bit>
+#include <cstddef>
 #include <vector>
 #include <bitset>
+#include <cmath>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ int bynaryToDecimal(const vector<int>& bytes) {
 
 std::byte byteReverse(byte b)
 {
-    std::uint16_t byte = to_integer<uint16_t>(b);
+    std::uint16_t byte = std::to_integer<uint16_t>(b);
     vector <int> bytes;
     while (byte) {
         bytes.push_back(byte % 2);
