@@ -25,7 +25,8 @@ jobs:
              
       - name: Run tests
         run: |
-             ./run-tests.sh
+            pwd
+            ./run-tests.sh
            
   ubuntu-build-test:
     runs-on: ubuntu-latest
@@ -43,6 +44,7 @@ jobs:
            
       - name: Run tests
         run: |
+          pwd
           chmod +x run-tests.sh
           ./run-tests.sh
           
