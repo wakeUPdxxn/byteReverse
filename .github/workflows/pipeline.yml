@@ -9,7 +9,7 @@ on:
 
 
 jobs:
-  win-build:      
+  win-build-test:      
     runs-on: windows-latest
     steps:
       - name: CheckOut test
@@ -22,8 +22,12 @@ jobs:
         run: |
              cmake -S . -B build/release -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release
              cmake --build build/release
+             
+      - name: Run tests
+        run: |
+             ./run-tests.sh
            
-  ubuntu-build:
+  ubuntu-build-test:
     runs-on: ubuntu-latest
     steps:
       - name: CheckOut test
@@ -37,26 +41,12 @@ jobs:
            cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
            cmake --build build/release
            
-
-  test-win:
-    needs: win-build
-      
-    runs-on: windows-latest
-    steps:
-    - name: Run tests
-      run: |
-         ./run-tests.sh
-      
-  test-lin:
-     needs: ubuntu-build
-      
-     runs-on: ubuntu-latest
-     steps:
-       - name: Run tests
-         run: |
-           chmod +x run-tests.sh
-           ./run-tests.sh
-
+      - name: Run tests
+        run: |
+          chmod +x run-tests.sh
+          ./run-tests.sh
+          
+           
 
     
     
