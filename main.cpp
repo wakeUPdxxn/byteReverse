@@ -1,11 +1,27 @@
-#include <cmath>
-#include <cstddef>
+#include <bit>
+#include <vector>
+#include <bitset>
 
-void foo() {
+using namespace std;
 
+int bynaryToDecimal(const vector<int>& bytes) {
+    int decNum{ 0 };
+    for (size_t i = bytes.size() - 1, j{ 0 }; i > 0; --i, ++j)
+    {
+        decNum += pow(2, i) * bytes[j];
+    }
+    return decNum + 1;
 }
 
-int main(int argc, char* argv[]) {
-
-	//if()
+std::byte byteReverse(byte b)
+{
+    std::uint16_t byte = to_integer<uint16_t>(b);
+    vector <int> bytes;
+    while (byte) {
+        bytes.push_back(byte % 2);
+        byte /= 2;
+    }
+    return std::byte(bynaryToDecimal(bytes));
 }
+
+
