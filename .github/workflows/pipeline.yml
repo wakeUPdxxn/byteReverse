@@ -45,8 +45,6 @@ jobs:
     steps:
     - name: Run tests
       run: |
-         cmake -S . -B build/release -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release
-         cmake --build build/release
          ./run-tests.sh
       
   test-lin:
@@ -56,8 +54,6 @@ jobs:
      steps:
        - name: Run tests
          run: |
-           cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
-           cmake --build build/release
            chmod +x run-tests.sh
            ./run-tests.sh
 
