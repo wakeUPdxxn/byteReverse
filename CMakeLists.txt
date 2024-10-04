@@ -4,6 +4,10 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+if("${CMAKE_CXX_COMPILER_ID}" MATCHES "MSVC")
+    message(FATAL_ERROR "You should use another compiler")
+endif()
+
 add_library(${PROJECT_NAME} STATIC main.cpp)
 
 set(FETCHCONTENT_BASE_DIR "${CMAKE_BINARY_DIR}/googletest")
@@ -24,7 +28,6 @@ include(GoogleTest)
 target_link_libraries(${PROJECT_NAME}
   gtest gtest_main
 )
-
 add_subdirectory(tests)
 enable_testing()
 
