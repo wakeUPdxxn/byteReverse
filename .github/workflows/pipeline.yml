@@ -25,7 +25,7 @@ jobs:
            cmake --build build/release
            
   windows-all-build:
-    runs-on: windows-latests
+    runs-on: windows-latest
     steps:
     - name: CheckOut test
       uses: actions/checkout@v4  
