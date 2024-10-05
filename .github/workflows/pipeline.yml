@@ -54,7 +54,7 @@ jobs:
         ./SimpleTest
            
   windows-test:
-    runs-on: windows-latests
+    runs-on: windows-latest
     needs:  windows-all-build
     steps:
     - name: CheckOut test
