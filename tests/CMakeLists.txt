@@ -7,7 +7,7 @@ set(This SimpleTest)
 
 add_executable(${PROJECT_NAME} SimpleTest.cpp)
 include_directories(../${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(${PROJECT_NAME} byteReverse gtest gtest_main)
+target_link_libraries(${PROJECT_NAME} byteReverse gtest gtest_main gmock gmock_main)
 
 add_test(
 	NAME ${This}

@@ -1,12 +1,12 @@
 #include <cstddef>
+#include <cstdint>
 #include <vector>
-#include <bitset>
 #include <cmath>
 
 using namespace std;
 
-int bynaryToDecimal(const vector<int>& bytes) {
-    int decNum{ 0 };
+uint8_t bynaryToDecimal(const vector<uint8_t>& bytes) {
+    uint8_t decNum{ 0 };
     for (size_t i = bytes.size() - 1, j{ 0 }; i > 0; --i, ++j)
     {
         decNum += pow(2, i) * bytes[j];
@@ -16,13 +16,13 @@ int bynaryToDecimal(const vector<int>& bytes) {
 
 std::byte byteReverse(byte b)
 {
-    std::uint16_t byte = std::to_integer<uint16_t>(b);
-    vector <int> bytes;
+    std::uint8_t byte = std::to_integer<uint8_t>(b);
+    vector <uint8_t> bits;
     while (byte) {
-        bytes.push_back(byte % 2);
+        bits.push_back(byte % 2);
         byte /= 2;
     }
-    return std::byte(bynaryToDecimal(bytes));
+    return std::byte(bynaryToDecimal(bits));
 }
 
 
