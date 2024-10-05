@@ -1,3 +1,3 @@
-cd build/release/tests
-chmod +x SimpleTest
+cd build/release/tests;
+chmod +x SimpleTest;
 ./SimpleTest
