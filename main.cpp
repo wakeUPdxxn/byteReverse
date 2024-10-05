@@ -3,10 +3,8 @@
 #include <vector>
 #include <cmath>
 
-using namespace std;
-
-uint8_t bynaryToDecimal(const vector<uint8_t>& bytes) {
-    uint8_t decNum{ 0 };
+std::uint8_t bynaryToDecimal(const std::vector<std::uint8_t>& bytes) {
+    std::uint8_t decNum{ 0 };
     for (size_t i = bytes.size() - 1, j{ 0 }; i > 0; --i, ++j)
     {
         decNum += pow(2, i) * bytes[j];
@@ -14,10 +12,10 @@ uint8_t bynaryToDecimal(const vector<uint8_t>& bytes) {
     return decNum + 1;
 }
 
-std::byte byteReverse(byte b)
+std::byte byteReverse(std::byte b)
 {
     std::uint8_t byte = std::to_integer<uint8_t>(b);
-    vector <uint8_t> bits;
+    std::vector <uint8_t> bits;
     while (byte) {
         bits.push_back(byte % 2);
         byte /= 2;
