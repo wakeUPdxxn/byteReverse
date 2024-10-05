@@ -30,6 +30,7 @@ jobs:
     steps:
     - name: Run tests
       run: |
+        pwd
         ./run_tests.sh
            
   windows-all-build:
