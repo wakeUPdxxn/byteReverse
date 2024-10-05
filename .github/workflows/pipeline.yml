@@ -35,6 +35,7 @@ jobs:
       run: |
         cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
         cmake --build build/release
+        chmod +x run_tests.sh
         ./run_tests.sh
            
   windows-all-build:
