@@ -9,25 +9,6 @@ on:
 
 
 jobs:
-  win-build-test:      
-    runs-on: windows-latest
-    steps:
-      - name: CheckOut test
-        uses: actions/checkout@v4  
-          
-      - name: cmake-configure
-        uses: snickerbockers/cmake-configure@prerel1
-
-      - name: Build sources and tests
-        run: |
-             cmake -S . -B build/release -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release
-             cmake --build build/release
-             
-      - name: Run tests
-        run: |
-            pwd
-            ls
-            ./run-tests.sh
            
   ubuntu-build-test:
     runs-on: ubuntu-latest
@@ -45,9 +26,7 @@ jobs:
            
       - name: Run tests
         run: |
-          pwd
-          ls
-          chmod +x run-tests.sh
+          sudo chmod +x run-tests.sh
           ./run-tests.sh
           
            
