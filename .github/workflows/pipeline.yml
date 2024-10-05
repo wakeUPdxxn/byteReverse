@@ -23,11 +23,6 @@ jobs:
         run: |
            cmake -S . -B build/release -D CMAKE_BUILD_TYPE=Release
            cmake --build build/release
-           
-      - name: Run tests
-        run: |
-          sudo chmod +x run-tests.sh
-          ./run-tests.sh
 
   ubuntu-test:
     runs-on: ubuntu-latest
