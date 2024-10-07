@@ -48,7 +48,7 @@ jobs:
       run: |
         chmod +x all_build.sh
         ./all_build.sh
-        chmod +x all_build.sh
+        chmod +x run_tests.sh
         ./run_tests.sh
            
   windows-test:
