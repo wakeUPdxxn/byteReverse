@@ -1,3 +1,4 @@
+[![build and test](https://github.com/wakeUPdxxn/byteReverse/actions/workflows/pipeline.yml/badge.svg?branch=master&event=status)](https://github.com/wakeUPdxxn/byteReverse/actions/workflows/pipeline.yml)
 # byteReverse
 ### Build:
 ./all_build.sh
